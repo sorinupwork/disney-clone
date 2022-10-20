@@ -13,6 +13,13 @@ a {
   text-decoration: none;
 }
 
+.navbar {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
 .app {
   margin: 1.2rem;
 }
@@ -38,4 +45,38 @@ a {
   border-radius: 5%;
   margin: 5px;
   filter: drop-shadow(5px 5px 10px #000);
+}
+
+.video-image {
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.info {
+  position: relative;
+  margin-top: 30%;
+  margin-left: 50px;
+  max-width: 50%;
+}
+
+.video-overlay {
+  position: absolute;
+}
+
+.info-footer {
+  height: 100vh;
+}
+
+.account-info {
+  display: flex;
+  height: 50%;
+}
+
+.avatar {
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  margin-left: 1rem;
+  background: white;
 }

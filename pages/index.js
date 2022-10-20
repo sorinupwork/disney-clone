@@ -2,6 +2,7 @@
 import Head from "next/head";
 import Section from "../components/Section";
 import { gql, GraphQLClient } from "graphql-request";
+import Navbar from "../components/Navbar";
 
 const url = process.env.HYGRAPH_CONTENT_API;
 
@@ -12,7 +13,7 @@ export const getStaticProps = async () => {
     },
   });
 
-  const query = gql`
+  const videosQuery = gql`
     query {
       videos {
         createdAt
@@ -32,17 +33,32 @@ export const getStaticProps = async () => {
     }
   `;
 
-  const data = await graphQLClient.request(query);
+  const accountQuery = gql`
+    query {
+      account(where: { id: "cl9ex7gqu0jty0auubz462f44" }) {
+        username
+        avatar {
+          url
+        }
+      }
+    }
+  `;
+
+  const data = await graphQLClient.request(videosQuery);
   const videos = data.videos;
+
+  const accountData = await graphQLClient.request(accountQuery);
+  const account = accountData.account;
 
   return {
     props: {
       videos,
+      account,
     },
   };
 };
 
-const Home = ({ videos }) => {
+const Home = ({ videos, account }) => {
   const randomVideo = (videos) => {
     return videos[Math.floor(Math.random() * videos.length)];
   };
@@ -65,6 +81,8 @@ const Home = ({ videos }) => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <Navbar account={account} />
 
       <div className="app">
         <div className="main-video">

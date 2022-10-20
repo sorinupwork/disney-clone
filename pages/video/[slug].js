@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { gql, GraphQLClient } from "graphql-request";
 
 const url = process.env.HYGRAPH_CONTENT_API;
@@ -46,8 +46,57 @@ export const getServerSideProps = async (pageContext) => {
   };
 };
 
+const changeToSeen = async (slug) => {
+  await fetch("/api/changeToSeen", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ slug }),
+  });
+};
+
 const Video = ({ video }) => {
-  return <div>Video</div>;
+  const [watching, setWatching] = useState(false);
+  console.log(video);
+  return (
+    <>
+      {!watching && (
+        <img
+          className="video-image"
+          src={video.thumbnail.url}
+          alt={video.title}
+        />
+      )}
+      {!watching && (
+        <div className="info">
+          <p>{video.tags.join(", ")}</p>
+          <p>{video.description}</p>
+          <a href="/">go back</a>
+          <button
+            className="video-overlay"
+            onClick={() => {
+              changeToSeen(video.slug);
+              watching ? setWatching(false) : setWatching(true);
+            }}
+          >
+            PLAY
+          </button>
+        </div>
+      )}
+
+      {watching && (
+        <video width="100%" controls>
+          <source src={video.mp4.url} type="video/mp4" />
+        </video>
+      )}
+
+      <div
+        className="info-footer"
+        onClick={() => (watching ? setWatching(false) : null)}
+      ></div>
+    </>
+  );
 };
 
 export default Video;
