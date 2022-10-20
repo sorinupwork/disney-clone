@@ -1,7 +1,19 @@
 import React from "react";
+import VideoCard from "./VideoCard";
 
-const Section = () => {
-  return <div>Section</div>;
+const Section = ({ genre, videos }) => {
+  return (
+    <div className="section">
+      <h3>{genre}</h3>
+      <div className="video-feed">
+        {videos.map((video) => (
+          <a key={video.id} href={`/video/${video.slug}`}>
+            <VideoCard thumbnail={video.thumbnail} />
+          </a>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default Section;
