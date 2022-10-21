@@ -18,10 +18,7 @@ a {
   width: 100%;
   display: flex;
   justify-content: space-between;
-}
-
-.app {
-  margin: 1.2rem;
+  padding-top: 30px;
 }
 
 .main-video {
@@ -37,13 +34,14 @@ a {
 }
 
 .video-feed {
+  display: flex;
 }
 
 .videoCard {
-  width: 20%;
+  width: 19.2%;
   height: auto;
   border-radius: 5%;
-  margin: 5px;
+  margin: 0.4%;
   filter: drop-shadow(5px 5px 10px #000);
 }
 
@@ -71,6 +69,7 @@ a {
 .account-info {
   display: flex;
   height: 50%;
+  margin: 20px;
 }
 
 .avatar {
@@ -79,4 +78,18 @@ a {
   border-radius: 50%;
   margin-left: 1rem;
   background: white;
+}
+
+.franchise {
+  width: 20%;
+  background-color: #1e2841;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+.section {
+}
+
+.logo-wrapper {
+  padding: 10px 30px;
 }

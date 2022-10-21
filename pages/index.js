@@ -3,6 +3,13 @@ import Head from "next/head";
 import Section from "../components/Section";
 import { gql, GraphQLClient } from "graphql-request";
 import Navbar from "../components/Navbar";
+import Link from "next/link";
+import Image from "next/image";
+import disneyLogo from "../public/disney-button.png";
+import marvelLogo from "../public/marvel-button.png";
+import natgeoLogo from "../public/natgeo-button.png";
+import starwarsLogo from "../public/star-wars-button.png";
+import pixarLogo from "../public/pixar.png";
 
 const url = process.env.HYGRAPH_CONTENT_API;
 
@@ -94,22 +101,62 @@ const Home = ({ videos, account }) => {
       </div>
 
       <div className="video-feed">
-        <Section genre={"Recommended for you"} videos={unseenVideos(videos)} />
-        <Section genre={"Family"} videos={filterVideos(videos, "family")} />
-        <Section genre={"Thriller"} videos={filterVideos(videos, "thriller")} />
-        <Section genre={"Classic"} videos={filterVideos(videos, "classic")} />
-        <Section genre={"Pixar"} videos={filterVideos(videos, "pixar")} />
-        <Section genre={"Marvel"} videos={filterVideos(videos, "marvel")} />
-        <Section
-          genre={"National Geographic"}
-          videos={filterVideos(videos, "national-geographic")}
-        />
-        <Section genre={"Disney"} videos={filterVideos(videos, "disney")} />
-        <Section
-          genre={"Star Wars"}
-          videos={filterVideos(videos, "star-wars")}
-        />
+        <Link href="#disney">
+          <div className="franchise" id="disney">
+            <Image src={disneyLogo} alt="disney-logo" />
+          </div>
+        </Link>
+        <Link href="#pixar">
+          <div className="franchise" id="pixar">
+            <Image src={pixarLogo} alt="disney-logo" />
+          </div>
+        </Link>
+        <Link href="#star-wars">
+          <div className="franchise" id="star-wars">
+            <Image src={starwarsLogo} alt="disney-logo" />
+          </div>
+        </Link>
+        <Link href="#nat-geo">
+          <div className="franchise" id="nat-geo">
+            <Image src={natgeoLogo} alt="disney-logo" />
+          </div>
+        </Link>
+        <Link href="#marvel">
+          <div className="franchise" id="marvel">
+            <Image src={marvelLogo} alt="disney-logo" />
+          </div>
+        </Link>
       </div>
+
+      <Section genre={"Recommended for you"} videos={unseenVideos(videos)} />
+      <Section genre={"Family"} videos={filterVideos(videos, "family")} />
+      <Section genre={"Thriller"} videos={filterVideos(videos, "thriller")} />
+      <Section genre={"Classic"} videos={filterVideos(videos, "classic")} />
+      <Section
+        id="pixar"
+        genre={"Pixar"}
+        videos={filterVideos(videos, "pixar")}
+      />
+      <Section
+        id="marvel"
+        genre={"Marvel"}
+        videos={filterVideos(videos, "marvel")}
+      />
+      <Section
+        id="nat-geo"
+        genre={"National Geographic"}
+        videos={filterVideos(videos, "national-geographic")}
+      />
+      <Section
+        id="disney"
+        genre={"Disney"}
+        videos={filterVideos(videos, "disney")}
+      />
+      <Section
+        id="star-wars"
+        genre={"Star Wars"}
+        videos={filterVideos(videos, "star-wars")}
+      />
     </>
   );
 };

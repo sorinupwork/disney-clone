@@ -58,7 +58,7 @@ const changeToSeen = async (slug) => {
 
 const Video = ({ video }) => {
   const [watching, setWatching] = useState(false);
-  console.log(video);
+
   return (
     <>
       {!watching && (
@@ -72,7 +72,9 @@ const Video = ({ video }) => {
         <div className="info">
           <p>{video.tags.join(", ")}</p>
           <p>{video.description}</p>
-          <a href="/">go back</a>
+          <a href="/">
+            <p>go back</p>
+          </a>
           <button
             className="video-overlay"
             onClick={() => {
